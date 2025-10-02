@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TaskFlow - Task Manager</title>
+        <link rel="icon" href="assets/taskflow-icon.png" type="image/png">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="app-container">
+
+            <!--Sidebar-->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span class="logo-text">TaskFlow</span>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" data-section="dashboard">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="tasks">
+                            <i class="fas fa-list-check"></i>
+                            <span class="nav-text">Task Tracker</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="calendar">
+                            <i class="fas fa-calendar"></i>
+                            <span class="nav-text">Calendar</span>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="analytics">
+                            <i class="fas fa-chart-pie"></i>
+                            <span class="nav-text">Analytics</span>
+                        </a>
+                    </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!--Main Content-->
+            <main class = "main-content">
+                <!--Header-->
+                <header class="header">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                    <button class="add-task-btn" id="addTaskBtn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Task</span>
+                    </button>
+                </header>
+
+                <!--Content Sections-->
+
+                <!--Dashboard Section-->
+                <section id="dashboard" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="totalTasks">0</h3>
+                                <p>Total Tasks</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon completed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="completedTasks">0</h3>
+                                <p>completed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pendingTasks">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon progress">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="inProgressTasks">0</h3>
+                            <p>In Progress</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="recent-tasks">
+                    <h2>Recent Tasks</h2>
+                    <div id="recentTasksList" class="task-list"></div>
+                </div>
+                </section>
+
+                <!--Task Tracker Section-->
+                <section id="tasks" class="content-section">
+                    <div class="task-header">
+                        <h2>Task Tracker</h2>
+                        <div class="task-filters">
+                            <select id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                            <select id="priorityFilter">
+                                <option value="all">All Priority</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="tasksList" class="task-list"></div>
+                </section>
+
+                <!--Calendar Section-->
+                <section id="calendar" class="content-section">
+                    <div class="calendar-header">
+                        <h2>Task Calendar</h2>
+                        <div class="calendar-nav">
+                            <button id="prevMonth"><i class="fas fa chevron-left"></i></button>
+                            <span id="currentMonth"></span>
+                            <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
+                        <div id="selectedDateTasks" class="selected-date-tasks">
+                            <h3 id="selectedDate">Select a date to view tasks</h3>
+                            <div id="dateTasks"></div>
+                </div>
+                </section>
+
+                <!--Analytics Section-->
+                <section id="analytics" class="content-section">
+                <div class="analytics-header">
+                    <h2>Analytics</h2>
+                    <div class="analytics-filters">
+                        <select id="analyticsTimeframe">
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3>Task Completion Status</h3>
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Tasks by Priority</h3>
+                        <canvas id="priorityChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Task Progress Over Time</h3>
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            </main>
+        </div>
+
+        <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Task</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <label for="taskTitle">Task Title</label>
+                    <input type="text" id="taskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskStatus">Status</label>
+                        <select id="taskStatus">
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="taskDueDate">Due Date</label>
+                    <input type="date" id="taskDueDate">
+                </div>
+                <div class="form-group">
+                    <label for="taskCategory">Category</label>
+                    <input type="text" id="taskCategory" placeholder="e.g., Work, Personal, Study">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    </body>
+</html>
