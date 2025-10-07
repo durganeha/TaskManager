@@ -36,8 +36,8 @@ A powerful and modern **Task Management Web Application** built with **HTML, CSS
 |-------------|----------|
 | **HTML5** | Structure of the web app |
 | **CSS3** | Styling and responsiveness |
-| **JavaScript (ES6)** | App logic, interactivity, and LocalStorage |
-| **LocalStorage API** | Data persistence without a backend |
+| **JavaScript** | App logic, interactivity, and LocalStorage |
+| **LocalStorage** | Data persistence without a backend |
 
 ---
 👉 **Check out the live demo here:** [Live Demo]( https://durganeha.github.io/TaskManager/)
