@@ -1,5 +1,5 @@
-## TaskManager
-# 🧭 Comprehensive Task Management App  
+# TaskManager
+## 🧭 Comprehensive Task Management App  
 
 A powerful and modern **Task Management Web Application** built with **HTML, CSS, and JavaScript**, designed to efficiently organize, track, and analyze daily tasks.  
 
@@ -40,4 +40,4 @@ A powerful and modern **Task Management Web Application** built with **HTML, CSS
 | **LocalStorage API** | Data persistence without a backend |
 
 ---
-[Live Demo]( https://durganeha.github.io/TaskManager/)
+👉 **Check out the live demo here:** [Live Demo]( https://durganeha.github.io/TaskManager/)
